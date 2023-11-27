@@ -48,10 +48,12 @@ where
 }
 
 #[cfg(feature = "halo2-pse")]
-pub trait BigPrimeField = FieldExt<Repr = [u8; 32]>;
+pub trait BigPrimeField: FieldExt<Repr = [u8; 32]> {}
+impl<T> BigPrimeField for T where T: FieldExt<Repr = [u8; 32]> {}
 
 #[cfg(feature = "halo2-pse")]
-pub trait ScalarField = FieldExt;
+pub trait ScalarField: FieldExt {}
+impl<T> ScalarField for T where T: FieldExt {}
 
 #[inline(always)]
 pub(crate) fn decompose_u64_digits_to_limbs(

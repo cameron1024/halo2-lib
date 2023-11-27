@@ -10,7 +10,8 @@ pub mod fp2;
 #[cfg(test)]
 mod tests;
 
-pub trait PrimeField = BigPrimeField;
+pub trait PrimeField: BigPrimeField {}
+impl<T> PrimeField for T where T: BigPrimeField {}
 
 #[derive(Clone, Debug)]
 pub struct FieldExtPoint<FieldPoint: Clone + Debug> {

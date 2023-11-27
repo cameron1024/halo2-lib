@@ -17,4 +17,4 @@ Cargo.lock
 /halo2_ecc/src/secp256k1/data/
 
 *.csv
-*.srs
+*.srs.direnv

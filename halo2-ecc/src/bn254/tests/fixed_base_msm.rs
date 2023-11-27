@@ -4,7 +4,11 @@ use std::{env::var, fs::File};
 use crate::ecc::fixed_base::FixedEcPoint;
 
 use super::*;
-use halo2_base::{halo2_proofs::halo2curves::bn256::G1, SKIP_FIRST_PASS};
+use ff::PrimeField;
+use halo2_base::{
+    halo2_proofs::halo2curves::{bn256::G1, FieldExt},
+    SKIP_FIRST_PASS,
+};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct MSMCircuitParams {
@@ -22,7 +26,7 @@ struct MSMCircuitParams {
 }
 
 #[derive(Clone, Debug)]
-struct MSMConfig<F: PrimeField> {
+struct MSMConfig<F: PrimeField + FieldExt<Repr = [u8; 32]>> {
     fp_chip: FpChip<F>,
     batch_size: usize,
     _radix: usize,
